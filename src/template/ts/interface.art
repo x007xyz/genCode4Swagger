@@ -1,0 +1,9 @@
+declare namespace API {
+<% for(var i = 0; i < entities.length; i++){ %>
+  type <%= entities[i].name %> = {
+    <% for(var j = 0; j < entities[i].properties.length; j++){ %>
+    <%= entities[i].properties[j].name %><%= entities[i].properties[j].required ? '' : '?' %>: <%= entities[i].properties[j].type %>;
+    <% } %>
+  };
+<% } %>
+}
