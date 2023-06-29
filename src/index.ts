@@ -13,6 +13,7 @@ interface ConfigOptions {
   outputPath?: string;
   prefix: string;
   ignore?: string[];
+  dir?: string; // 存放生成的api文件的目录
   mode: 'ts' | 'js';
 }
 
@@ -74,7 +75,7 @@ export const generateService = async (schemaPath: string, config: ConfigOptions)
 
   const { templateDir, outputDir } = Object.assign({
     templateDir: path.join(__dirname, `../template/${config.mode}`),
-    outputDir: path.join(process.cwd(), `./src/api/${config.prefix}`),
+    outputDir: path.join(process.cwd(), `./src/${config.dir || 'api'}/${config.prefix}`),
   }, config)
 
   const openAPI = await getOpenAPIConfig(schemaPath);

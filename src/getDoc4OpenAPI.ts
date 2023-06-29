@@ -38,13 +38,11 @@ interface Entity {
   type: string;
   required: boolean;
   description: string;
-  properties?: {
-    [propertyName: string]: SchemaObject | ReferenceObject;
-  }
+  properties?: Entity[];
 }
 
 function isSchemaObject(obj: unknown): obj is SchemaObject {
-  return (obj as SchemaObject).properties !== undefined;
+  return (obj as SchemaObject).type !== undefined;
 }
 
 function isRequestBodyObject(obj: unknown): obj is RequestBodyObject {
@@ -66,7 +64,7 @@ const getType = (schemaObject: SchemaObject | ReferenceObject | undefined): stri
     return getRefName(schemaObject.$ref);
   }
 
-  let type: string = 'any';
+  let type: string = schemaObject.type as string;
 
   const numberEnum = [
     'int64',
@@ -162,13 +160,16 @@ function getEntities (schemas: {[propertyName: string]: SchemaObject | Reference
   return Object.keys(schemas).map((key) => {
     const schema = schemas[key];
     if (isSchemaObject(schema)) {
-      return {
+      const entity: Entity = {
         name: key,
         type: getType(schema),
         required: required.includes(key),
-        description: schema.description,
-        properties: getEntities(schema.properties, schema.required || []),
-      } as Entity;
+        description: schema.description
+      };
+      if (schema.properties) {
+        entity.properties = getEntities(schema.properties, schema.required || []);
+      }
+      return entity;
     } else {
       // 如果是ReferenceObject类型则进行处理
       return {
@@ -351,7 +352,7 @@ class APIDoc {
       if (!entity) {
         return
       }
-      return getType(entity.properties[this.resultKey]);
+      return entity.properties.find(item => item.name === this.resultKey).type;
     }
     return
   }

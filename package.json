@@ -1,11 +1,12 @@
 {
   "name": "gencode4swagger",
-  "version": "0.1.0",
+  "version": "0.1.5",
   "description": "",
   "main": "dist/index.js",
   "bin": "dist/index.js",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "postpublish": "npm run build && npm publish"
   },
   "keywords": [],
   "author": "",

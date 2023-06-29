@@ -7,7 +7,7 @@ declare namespace API {
     /**
     * <%= entities[i].properties[j].description %>
     */
-    <%= entities[i].properties[j].name %><%= entities[i].properties[j].required ? '' : '?' %>: <%= entities[i].properties[j].type %>;<% } %>
+    <%= entities[i].properties[j].name %><%= entities[i].properties[j].required ? '' : '?' %>: <%- entities[i].properties[j].type %>;<% } %>
   };
 <% } %>
 }

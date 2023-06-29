@@ -5,7 +5,7 @@ import request from '@/utils/request';
  * @param {API.<%= paths[i].pathParams%>} params - path参数 <% } %><% if (paths[i].queryParams) { %>
  * @param {API.<%= paths[i].queryParams%>} query - query查询参数 <% } %><% if (paths[i].body) { %>
  * @param {API.<%= paths[i].body%>} body - body请求体数据 <% } %>
- * @returns {Promise<<% if (paths[i].isResultObj) { %>API.<% } %><%= paths[i].result %>>} - 返回一个Promise，解析为响应数据对象
+ * @returns {Promise<<% if (!["string", "number", "boolean", "any"].includes(paths[i].result)) { %>API.<% } %><%= paths[i].result %>>} - 返回一个Promise，解析为响应数据对象
  */
 export async function <%= paths[i].operationId%>(<% if (paths[i].pathParams || paths[i].queryParams || paths[i].body) {%><% if (paths[i].pathParams) { %>
   params,<% } %> <% if (paths[i].queryParams) {%>
