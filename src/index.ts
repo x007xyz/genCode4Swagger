@@ -73,7 +73,7 @@ const getOpenAPIConfig = async (schemaPath: string) => {
 export const generateService = async (schemaPath: string, config: ConfigOptions) => {
 
   const { templateDir, outputDir } = Object.assign({
-    templateDir: path.join(__dirname, `./template/${config.mode}`),
+    templateDir: path.join(__dirname, `../template/${config.mode}`),
     outputDir: path.join(process.cwd(), `./src/api/${config.prefix}`),
   }, config)
 
