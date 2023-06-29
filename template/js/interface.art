@@ -3,11 +3,11 @@ declare namespace API {
   /**
   * <%= entities[i].description %>
   */
-  type <%= entities[i].name %> = {<% for(var j = 0; j < entities[i].properties.length; j++){ %>
+  type <%= entities[i].name %> = <% if (entities[i].properties) { %>{<% for(var j = 0; j < entities[i].properties.length; j++){ %>
     /**
     * <%= entities[i].properties[j].description %>
     */
     <%= entities[i].properties[j].name %><%= entities[i].properties[j].required ? '' : '?' %>: <%- entities[i].properties[j].type %>;<% } %>
-  };
+  }<% } else { %><%- entities[i].type%><% } %>;
 <% } %>
 }
