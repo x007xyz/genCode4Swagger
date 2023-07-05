@@ -188,7 +188,7 @@ class APIDoc {
   private resultKey: string = 'data';
   constructor(openAPI: OpenAPIObject, config: any = { ignore: [], prefix: '' }) {
     this._doc = {
-      title: openAPI.info.title,
+      title: openAPI?.info?.title,
       path: openAPI.servers[0].url,
       prefix: config.prefix,
       groups: []
@@ -352,7 +352,9 @@ class APIDoc {
       if (!entity) {
         return
       }
-      return entity.properties.find(item => item.name === this.resultKey).type;
+      const result = entity.properties.find(item => item.name === this.resultKey)
+      // 处理异常情况，如果result不存在则返回any
+      return result ? result.type : 'any';
     }
     return
   }
