@@ -47,6 +47,11 @@ const getSchema = async (schemaPath: string) => {
         rejectUnauthorized: false,
       });
       const json = await fetch(schemaPath, { agent }).then((rest) => rest.json());
+      // 判断json是否为openAPI格式
+      if (!json.openapi) {
+        throw new Error("文档路径不符合openAPI格式");
+      }
+      console.log(`${schemaPath}解析成功`);
       return json;
     } catch (error) {
       // eslint-disable-next-line no-console
