@@ -1,8 +1,53 @@
 import request from '@/utils/request';
 
 /**
+ * 新车详情 get /car/v1/newCar/${spuId}
+ * @param {API.getNewCarDetPathParams} params - path参数 
+ * @returns {Promise<API.AdmNewCarDetResp>} - 返回一个Promise，解析为响应数据对象
+ */
+export async function getNewCarDet(
+  params, 
+) {
+  const { spuId } = params;
+  return request(`/car/v1/newCar/${spuId}`, {
+    method: "get",
+  });
+}
+
+/**
+ * 新增新车 put /car/v1/newCar/${spuId}
+ * @param {API.editNewCarPathParams} params - path参数 
+ * @param {API.NewCarSpuEditReq} body - body请求体数据 
+ * @returns {Promise<number>} - 返回一个Promise，解析为响应数据对象
+ */
+export async function editNewCar(
+  params, 
+  body
+) {
+  const { spuId } = params;
+  return request(`/car/v1/newCar/${spuId}`, {
+    method: "put",
+    data: body,
+  });
+}
+
+/**
+ * 新车列表 get /car/v1/newCar
+ * @param {API.AdmNewCarQueryReq} query - query查询参数 
+ * @returns {Promise<API.PageModelAdmNewCarListResp>} - 返回一个Promise，解析为响应数据对象
+ */
+export async function getNewCarList( 
+  query,
+) {
+  return request(`/car/v1/newCar`, {
+    method: "get",
+    params: query,
+  });
+}
+
+/**
  * 新增新车 post /car/v1/newCar
- * @param {API.NewCarEditReq} body - body请求体数据 
+ * @param {API.NewCarSpuEditReq} body - body请求体数据 
  * @returns {Promise<number>} - 返回一个Promise，解析为响应数据对象
  */
 export async function addNewCar( 

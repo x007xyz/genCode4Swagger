@@ -1,6 +1,168 @@
 declare namespace API {
 
   /**
+  * 车辆图片dto
+  */
+  type CarImgDTO = {
+    /**
+    * 封面（视频的话可传递封面）
+    */
+    coverImg?: string;
+    /**
+    * 资源类型 1:图片 2:视频 3:pdf
+    */
+    mediaType?: number;
+    /**
+    * 车辆图片每个大分类下小类型
+    */
+    type?: string;
+    /**
+    * 图片/视频url
+    */
+    url?: string;
+  };
+
+  /**
+  * 新车SKU信息
+  */
+  type NewCarSkuDTO = {
+    /**
+    * skuId
+    */
+    skuId?: number;
+    /**
+    * 颜色
+    */
+    color?: string;
+    /**
+    * 渠道价，单位：分
+    */
+    channelPrice?: number;
+    /**
+    * 零售价，单位：分
+    */
+    retailPrice?: number;
+    /**
+    * 库存
+    */
+    stock?: number;
+  };
+
+  /**
+  * 新车编辑请求
+  */
+  type NewCarSpuEditReq = {
+    /**
+    * 渠道商ID
+    */
+    channelBusinessId: string;
+    /**
+    * 渠道商名称
+    */
+    channelBusinessName: string;
+    /**
+    * VIN码
+    */
+    vinCode: string;
+    /**
+    * 车辆品牌ID
+    */
+    carBrandId: number;
+    /**
+    * 车辆品牌名称
+    */
+    carBrandName: string;
+    /**
+    * 车辆车系ID
+    */
+    carSeriesId: number;
+    /**
+    * 车辆车系名称
+    */
+    carSeriesName: string;
+    /**
+    * 车辆型号ID
+    */
+    carModelId: number;
+    /**
+    * 车辆型号名称
+    */
+    carModelName: string;
+    /**
+    * 渠道价，单位：分
+    */
+    channelPrice: number;
+    /**
+    * 零售价，单位：分
+    */
+    retailPrice: number;
+    /**
+    * 库存信息
+    */
+    skuList: NewCarSkuDTO[];
+    /**
+    * 有无图片 0：无 1：有
+    */
+    hasPic?: number;
+    /**
+    * 
+    */
+    carImage?: YhcCarImageDTO;
+  };
+
+  /**
+  * 车辆图片信息
+  */
+  type YhcCarImageDTO = {
+    /**
+    * 封面图片
+    */
+    coverImgList?: CarImgDTO[];
+    /**
+    * 外观图片
+    */
+    exteriorImgList?: CarImgDTO[];
+    /**
+    * 内饰图片
+    */
+    interiorImgList?: CarImgDTO[];
+    /**
+    * 细节图片
+    */
+    detailImgList?: CarImgDTO[];
+    /**
+    * 视频解读
+    */
+    videoInterpretationList?: CarImgDTO[];
+  };
+
+  /**
+  * 结果
+  */
+  type ResultLong = {
+    /**
+    * 时间戳
+    */
+    requestId?: string;
+    /**
+    * 应答编码
+    */
+    code?: string;
+    /**
+    * 应答消息
+    */
+    message?: string;
+    /**
+    * 数据
+    */
+    data?: number;
+    /**
+    * 
+    */
+    success?: boolean;
+  };
+
+  /**
   * 车辆档案信息新增编辑Req
   */
   type CarBaseEditRequest = {
@@ -144,20 +306,6 @@ declare namespace API {
     * 
     */
     carImg?: CarImgResponse;
-  };
-
-  /**
-  * 车辆图片dto
-  */
-  type CarImgDTO = {
-    /**
-    * 车辆图片每个大分类下小类型
-    */
-    type?: string;
-    /**
-    * 图片/视频url
-    */
-    url?: string;
   };
 
   /**
@@ -1057,32 +1205,6 @@ declare namespace API {
   };
 
   /**
-  * 结果
-  */
-  type ResultLong = {
-    /**
-    * 时间戳
-    */
-    requestId?: string;
-    /**
-    * 应答编码
-    */
-    code?: string;
-    /**
-    * 应答消息
-    */
-    message?: string;
-    /**
-    * 数据
-    */
-    data?: number;
-    /**
-    * 
-    */
-    success?: boolean;
-  };
-
-  /**
   * 编辑车位ParkingEditReq
   */
   type ParkingEditReq = {
@@ -1108,120 +1230,6 @@ declare namespace API {
     * 要删除的车位id集合
     */
     ids: number[];
-  };
-
-  /**
-  * 车辆图片
-  */
-  type CarImageDTO = {
-    /**
-    * 封面图片
-    */
-    coverImgList?: CarImgDTO[];
-    /**
-    * 外观图片
-    */
-    exteriorImgList?: CarImgDTO[];
-    /**
-    * 内饰图片
-    */
-    interiorImgList?: CarImgDTO[];
-    /**
-    * 细节图片
-    */
-    detailImgList?: CarImgDTO[];
-    /**
-    * 视频解读
-    */
-    videoInterpretationList?: CarImgDTO[];
-  };
-
-  /**
-  * 新车编辑请求
-  */
-  type NewCarEditReq = {
-    /**
-    * 渠道商ID
-    */
-    channelBusinessId: string;
-    /**
-    * 渠道商名称
-    */
-    channelBusinessName: string;
-    /**
-    * VIN码
-    */
-    vinCode: string;
-    /**
-    * 车辆品牌ID
-    */
-    carBrandId: number;
-    /**
-    * 车辆品牌名称
-    */
-    carBrandName: string;
-    /**
-    * 车辆车系ID
-    */
-    carSeriesId: number;
-    /**
-    * 车辆车系名称
-    */
-    carSeriesName: string;
-    /**
-    * 车辆型号ID
-    */
-    carModelId: number;
-    /**
-    * 车辆型号名称
-    */
-    carModelName: string;
-    /**
-    * 渠道价，单位：分
-    */
-    channelPrice: number;
-    /**
-    * 零售价，单位：分
-    */
-    retailPrice: number;
-    /**
-    * 库存信息
-    */
-    skuList: NewSkuEditReq[];
-    /**
-    * 有无图片 0：无 1：有
-    */
-    hasPic?: number;
-    /**
-    * 
-    */
-    carImage?: CarImageDTO;
-  };
-
-  /**
-  * 新车SKU编辑请求
-  */
-  type NewSkuEditReq = {
-    /**
-    * spuId
-    */
-    spuId?: number;
-    /**
-    * 颜色
-    */
-    color?: string;
-    /**
-    * 渠道价，单位：分
-    */
-    channelPrice?: number;
-    /**
-    * 零售价，单位：分
-    */
-    retailPrice?: number;
-    /**
-    * 库存
-    */
-    stock?: number;
   };
 
   /**
@@ -1916,6 +1924,246 @@ declare namespace API {
     * 
     */
     data?: ParkingInfoResp;
+    /**
+    * 
+    */
+    success?: boolean;
+  };
+
+  /**
+  * 新车列表查询
+  */
+  type AdmNewCarQueryReq = {
+    /**
+    * 
+    */
+    pageNum?: number;
+    /**
+    * 
+    */
+    pageSize?: number;
+    /**
+    * 
+    */
+    vinCode?: string;
+    /**
+    * 
+    */
+    sellerName?: string;
+    /**
+    * 
+    */
+    hasPic?: number;
+    /**
+    * 
+    */
+    stockMin?: number;
+    /**
+    * 
+    */
+    stockMax?: number;
+    /**
+    * 
+    */
+    retailPriceMin?: number;
+    /**
+    * 
+    */
+    retailPriceMax?: number;
+    /**
+    * 
+    */
+    carStatus?: number;
+  };
+
+  /**
+  * 后台-新车列表查询返回
+  */
+  type AdmNewCarListResp = {
+    /**
+    * 车辆spuId
+    */
+    id?: number;
+    /**
+    * 车辆封面
+    */
+    coverImg?: string;
+    /**
+    * 车辆编号（YXC+九位自然序号）
+    */
+    carCode?: string;
+    /**
+    * VIN码
+    */
+    vinCode?: string;
+    /**
+    * 车辆卖家名称（供应商名称）
+    */
+    sellerName?: string;
+    /**
+    * 寄售日期（取自新增日期）
+    */
+    consignDate?: string;
+    /**
+    * 车辆名称（车辆三级拼接而成）
+    */
+    carName?: string;
+    /**
+    * 渠道价，单位：分
+    */
+    channelPrice?: number;
+    /**
+    * 零售价，单位：分
+    */
+    retailPrice?: number;
+    /**
+    * 排量（组装后的）eg:1.5T
+    */
+    displacement?: string;
+    /**
+    * 库存信息
+    */
+    skuList?: NewCarSkuDTO[];
+    /**
+    * 车位信息
+    */
+    parkingInfo?: string;
+    /**
+    * 车位备注
+    */
+    parkingRemark?: string;
+  };
+
+  /**
+  * 数据
+  */
+  type PageModelAdmNewCarListResp = {
+    /**
+    * 
+    */
+    pageNum?: number;
+    /**
+    * 
+    */
+    pageSize?: number;
+    /**
+    * 
+    */
+    total?: number;
+    /**
+    * 
+    */
+    rows?: AdmNewCarListResp[];
+  };
+
+  /**
+  * 结果
+  */
+  type ResultPageModelAdmNewCarListResp = {
+    /**
+    * 时间戳
+    */
+    requestId?: string;
+    /**
+    * 应答编码
+    */
+    code?: string;
+    /**
+    * 应答消息
+    */
+    message?: string;
+    /**
+    * 
+    */
+    data?: PageModelAdmNewCarListResp;
+    /**
+    * 
+    */
+    success?: boolean;
+  };
+
+  /**
+  * 后台-新车详情
+  */
+  type AdmNewCarDetResp = {
+    /**
+    * 渠道商ID
+    */
+    channelBusinessId?: string;
+    /**
+    * 渠道商名称
+    */
+    channelBusinessName?: string;
+    /**
+    * VIN码
+    */
+    vinCode?: string;
+    /**
+    * 车辆品牌ID
+    */
+    carBrandId?: number;
+    /**
+    * 车辆品牌名称
+    */
+    carBrandName?: string;
+    /**
+    * 车辆车系ID
+    */
+    carSeriesId?: number;
+    /**
+    * 车辆车系名称
+    */
+    carSeriesName?: string;
+    /**
+    * 车辆型号ID
+    */
+    carModelId?: number;
+    /**
+    * 车辆型号名称
+    */
+    carModelName?: string;
+    /**
+    * 渠道价，单位：分
+    */
+    channelPrice?: number;
+    /**
+    * 零售价，单位：分
+    */
+    retailPrice?: number;
+    /**
+    * 库存信息
+    */
+    skuList?: NewCarSkuDTO[];
+    /**
+    * 有无图片 0：无 1：有
+    */
+    hasPic?: number;
+    /**
+    * 
+    */
+    carImage?: YhcCarImageDTO;
+  };
+
+  /**
+  * 结果
+  */
+  type ResultAdmNewCarDetResp = {
+    /**
+    * 时间戳
+    */
+    requestId?: string;
+    /**
+    * 应答编码
+    */
+    code?: string;
+    /**
+    * 应答消息
+    */
+    message?: string;
+    /**
+    * 
+    */
+    data?: AdmNewCarDetResp;
     /**
     * 
     */
@@ -3766,6 +4014,26 @@ declare namespace API {
     * 
     */
     success?: boolean;
+  };
+
+  /**
+  * getNewCarDet路径参数对象
+  */
+  type getNewCarDetPathParams = {
+    /**
+    * 
+    */
+    spuId: number;
+  };
+
+  /**
+  * editNewCar路径参数对象
+  */
+  type editNewCarPathParams = {
+    /**
+    * 
+    */
+    spuId: number;
   };
 
   /**

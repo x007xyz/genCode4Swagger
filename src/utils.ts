@@ -12,19 +12,24 @@ export const getRefName = (schemaPath: string) => {
  * @param path 
  */
 export const get = (obj: any, path: string) => {
-  // 将[]替换为.
-  path = path.replace(/\[/g, ".").replace(/\]/g, "");
-  const arr = path.split(".").filter(str => str !== "");
-  let value = obj;
-  arr.forEach((key) => {
-    if (key === "*") {
-      // 取对象的第一个值
-      value = value[Object.keys(value)[0]];
-    } else {
-      value = value[key];
-    }
-  });
-  return value;
+  try {
+    // 将[]替换为.
+    path = path.replace(/\[/g, ".").replace(/\]/g, "");
+    const arr = path.split(".").filter(str => str !== "");
+    let value = obj;
+    arr.forEach((key) => {
+      if (key === "*") {
+        // 取对象的第一个值
+        value = value[Object.keys(value)[0]];
+      } else {
+        value = value[key];
+      }
+    });
+    return value;
+  } catch (error) {
+    // 可能存在路径不存在的情况，如返回体中没有返回内容
+    return null;
+  }
 }
 
 export const mkdir = (dir) => {
