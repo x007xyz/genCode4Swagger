@@ -1,11 +1,13 @@
 {
   "name": "gencode4swagger",
-  "version": "0.1.9",
+  "version": "0.2.0",
   "description": "",
   "main": "dist/index.js",
   "bin": "dist/index.js",
   "scripts": {
     "build": "tsc",
+    "update:version": "standard-version",
+    "release": "npm run update:version && git push --follow-tags origin master",
     "postpublish": "npm run build && npm publish"
   },
   "keywords": [],
@@ -18,5 +20,8 @@
     "openapi3-ts": "^4.1.2",
     "swagger2openapi": "^7.0.8",
     "ts-node": "^10.9.1"
+  },
+  "devDependencies": {
+    "standard-version": "^9.5.0"
   }
 }

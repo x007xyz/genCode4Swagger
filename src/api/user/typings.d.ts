@@ -3,6 +3,154 @@ declare namespace API {
   /**
   * 用户新增Req
   */
+  type ServerUserAddRequest = {
+    /**
+    * 用户名称
+    */
+    userName?: string;
+    /**
+    * 用户电话
+    */
+    userPhone?: string;
+    /**
+    * 用户业务角色
+    */
+    userBizRoles?: number[];
+  };
+
+  /**
+  * 结果
+  */
+  type ResultServerUserDetailResponse = {
+    /**
+    * 时间戳
+    */
+    requestId?: string;
+    /**
+    * 应答编码
+    */
+    code?: string;
+    /**
+    * 应答消息
+    */
+    message?: string;
+    /**
+    * 
+    */
+    data?: ServerUserDetailResponse;
+    /**
+    * 
+    */
+    success?: boolean;
+  };
+
+  /**
+  * 数据
+  */
+  type ServerUserDetailResponse = {
+    /**
+    * 用户ID
+    */
+    userId?: number;
+    /**
+    * 用户名称
+    */
+    userName?: string;
+    /**
+    * 用户头像
+    */
+    userAvatarUrl?: string;
+    /**
+    * 用户电话
+    */
+    userPhone?: string;
+    /**
+    * 用户微信ID
+    */
+    userWxOpenId?: string;
+    /**
+    * 用户类型
+    */
+    userType?: string;
+    /**
+    * 
+    */
+    userTypeList?: string[];
+    /**
+    * 
+    */
+    userTypeName?: string[];
+    /**
+    * 用户状态
+    */
+    userState?: number;
+    /**
+    * 
+    */
+    userStateValue?: string;
+    /**
+    * 创建时间
+    */
+    createTime?: string;
+  };
+
+  /**
+  * 用户解绑用户类型Req
+  */
+  type ServerUserUnbindUserTypeReq = {
+    /**
+    * 用户ID
+    */
+    userId: number;
+    /**
+    * 类型ID
+    */
+    userType: number;
+  };
+
+  /**
+  * 结果
+  */
+  type ResultVoid = {
+    /**
+    * 时间戳
+    */
+    requestId?: string;
+    /**
+    * 应答编码
+    */
+    code?: string;
+    /**
+    * 应答消息
+    */
+    message?: string;
+    /**
+    * 数据
+    */
+    data?: Record<string, any>;
+    /**
+    * 
+    */
+    success?: boolean;
+  };
+
+  /**
+  * 用户绑定用户类型Req
+  */
+  type ServerUserBindUserTypeReq = {
+    /**
+    * 用户ID
+    */
+    userId: number;
+    /**
+    * 类型ID
+    */
+    userType: number;
+  };
+
+  /**
+  * 用户新增Req
+  */
   type DealerUserAddRequest = {
     /**
     * 用户名称
@@ -88,162 +236,6 @@ declare namespace API {
     * 
     */
     success?: boolean;
-  };
-
-  /**
-  * 用户新增Req
-  */
-  type ServerUserAddRequest = {
-    /**
-    * 用户名称
-    */
-    userName?: string;
-    /**
-    * 用户电话
-    */
-    userPhone?: string;
-    /**
-    * 用户身份
-    */
-    userType?: number;
-  };
-
-  /**
-  * 结果
-  */
-  type ResultServerUserDetailResponse = {
-    /**
-    * 时间戳
-    */
-    requestId?: string;
-    /**
-    * 应答编码
-    */
-    code?: string;
-    /**
-    * 应答消息
-    */
-    message?: string;
-    /**
-    * 
-    */
-    data?: ServerUserDetailResponse;
-    /**
-    * 
-    */
-    success?: boolean;
-  };
-
-  /**
-  * 数据
-  */
-  type ServerUserDetailResponse = {
-    /**
-    * 用户ID
-    */
-    userId?: number;
-    /**
-    * 用户名称
-    */
-    userName?: string;
-    /**
-    * 用户头像
-    */
-    userAvatarUrl?: string;
-    /**
-    * 用户电话
-    */
-    userPhone?: string;
-    /**
-    * 用户微信ID
-    */
-    userWxOpenId?: string;
-    /**
-    * 用户类型
-    */
-    userType?: string;
-    /**
-    * 
-    */
-    userTypeList?: string[];
-    /**
-    * 
-    */
-    userTypeName?: string[];
-    /**
-    * 注册状态
-    */
-    regState?: number;
-    /**
-    * 
-    */
-    regStateValue?: string;
-    /**
-    * 用户状态
-    */
-    userState?: number;
-    /**
-    * 
-    */
-    userStateValue?: string;
-    /**
-    * 创建时间
-    */
-    createTime?: string;
-  };
-
-  /**
-  * 用户解绑用户类型Req
-  */
-  type ServerUserUnbindUserTypeReq = {
-    /**
-    * 用户ID
-    */
-    userId: number;
-    /**
-    * 类型ID
-    */
-    userType: number;
-  };
-
-  /**
-  * 结果
-  */
-  type ResultVoid = {
-    /**
-    * 时间戳
-    */
-    requestId?: string;
-    /**
-    * 应答编码
-    */
-    code?: string;
-    /**
-    * 应答消息
-    */
-    message?: string;
-    /**
-    * 数据
-    */
-    data?: Record<string, any>;
-    /**
-    * 
-    */
-    success?: boolean;
-  };
-
-  /**
-  * 用户绑定用户类型Req
-  */
-  type ServerUserBindUserTypeReq = {
-    /**
-    * 用户ID
-    */
-    userId: number;
-    /**
-    * 类型ID
-    */
-    userType: number;
   };
 
   /**
@@ -535,80 +527,6 @@ declare namespace API {
   };
 
   /**
-  * 用户分页查询
-  */
-  type DealerUserPageQueryRequest = {
-    /**
-    * 
-    */
-    pageNum?: number;
-    /**
-    * 
-    */
-    pageSize?: number;
-    /**
-    * 用户手机号
-    */
-    userName?: string;
-    /**
-    * 用户手机号
-    */
-    userPhone?: string;
-    /**
-    * 用户状态
-    */
-    userState?: number;
-  };
-
-  /**
-  * 数据
-  */
-  type PageModelDealerUserDetailResponse = {
-    /**
-    * 
-    */
-    pageNum?: number;
-    /**
-    * 
-    */
-    pageSize?: number;
-    /**
-    * 
-    */
-    total?: number;
-    /**
-    * 
-    */
-    rows?: DealerUserDetailResponse[];
-  };
-
-  /**
-  * 结果
-  */
-  type ResultPageModelDealerUserDetailResponse = {
-    /**
-    * 时间戳
-    */
-    requestId?: string;
-    /**
-    * 应答编码
-    */
-    code?: string;
-    /**
-    * 应答消息
-    */
-    message?: string;
-    /**
-    * 
-    */
-    data?: PageModelDealerUserDetailResponse;
-    /**
-    * 
-    */
-    success?: boolean;
-  };
-
-  /**
   * 
   */
   type ServerUserPageQueryRequest = {
@@ -727,6 +645,218 @@ declare namespace API {
   };
 
   /**
+  * 用户分页查询
+  */
+  type DealerUserPageQueryRequest = {
+    /**
+    * 
+    */
+    pageNum?: number;
+    /**
+    * 
+    */
+    pageSize?: number;
+    /**
+    * 用户手机号
+    */
+    userName?: string;
+    /**
+    * 用户手机号
+    */
+    userPhone?: string;
+    /**
+    * 用户状态
+    */
+    userState?: number;
+  };
+
+  /**
+  * 数据
+  */
+  type PageModelDealerUserDetailResponse = {
+    /**
+    * 
+    */
+    pageNum?: number;
+    /**
+    * 
+    */
+    pageSize?: number;
+    /**
+    * 
+    */
+    total?: number;
+    /**
+    * 
+    */
+    rows?: DealerUserDetailResponse[];
+  };
+
+  /**
+  * 结果
+  */
+  type ResultPageModelDealerUserDetailResponse = {
+    /**
+    * 时间戳
+    */
+    requestId?: string;
+    /**
+    * 应答编码
+    */
+    code?: string;
+    /**
+    * 应答消息
+    */
+    message?: string;
+    /**
+    * 
+    */
+    data?: PageModelDealerUserDetailResponse;
+    /**
+    * 
+    */
+    success?: boolean;
+  };
+
+  /**
+  * 买家用户列表分页查询Req
+  */
+  type BuyerPageQueryRequest = {
+    /**
+    * 
+    */
+    pageNum?: number;
+    /**
+    * 
+    */
+    pageSize?: number;
+    /**
+    * 用户名
+    */
+    userName?: string;
+  };
+
+  /**
+  * 买家用户Resp
+  */
+  type BuyerResponse = {
+    /**
+    * 用户ID
+    */
+    userId?: number;
+    /**
+    * 用户名称
+    */
+    userName?: string;
+    /**
+    * 用户类型
+    */
+    userType?: number;
+    /**
+    * 
+    */
+    userTypeValue?: string;
+    /**
+    * 用户头
+    */
+    userAvatarUrl?: string;
+    /**
+    * 用户电话
+    */
+    userPhone?: string;
+    /**
+    * 用户微信ID
+    */
+    userWxOpenId?: string;
+    /**
+    * 用户状态
+    */
+    userState?: number;
+    /**
+    * 
+    */
+    userStateValue?: string;
+    /**
+    * 创建时间
+    */
+    createTime?: string;
+  };
+
+  /**
+  * 数据
+  */
+  type PageModelBuyerResponse = {
+    /**
+    * 
+    */
+    pageNum?: number;
+    /**
+    * 
+    */
+    pageSize?: number;
+    /**
+    * 
+    */
+    total?: number;
+    /**
+    * 
+    */
+    rows?: BuyerResponse[];
+  };
+
+  /**
+  * 结果
+  */
+  type ResultPageModelBuyerResponse = {
+    /**
+    * 时间戳
+    */
+    requestId?: string;
+    /**
+    * 应答编码
+    */
+    code?: string;
+    /**
+    * 应答消息
+    */
+    message?: string;
+    /**
+    * 
+    */
+    data?: PageModelBuyerResponse;
+    /**
+    * 
+    */
+    success?: boolean;
+  };
+
+  /**
+  * 结果
+  */
+  type ResultBuyerResponse = {
+    /**
+    * 时间戳
+    */
+    requestId?: string;
+    /**
+    * 应答编码
+    */
+    code?: string;
+    /**
+    * 应答消息
+    */
+    message?: string;
+    /**
+    * 
+    */
+    data?: BuyerResponse;
+    /**
+    * 
+    */
+    success?: boolean;
+  };
+
+  /**
   * 车商列表分页查询Req
   */
   type DealerPageQueryRequest = {
@@ -809,19 +939,19 @@ declare namespace API {
   };
 
   /**
-  * getUserDetailByUserId路径参数对象
+  * getUserPageInfo查询参数对象
   */
-  type getUserDetailByUserIdPathParams = {
+  type getUserPageInfoQueryParams = {
     /**
     * 
     */
-    userId: number;
+    request: ServerUserPageQueryRequest;
   };
 
   /**
-  * getUserDetailByUserId_1路径参数对象
+  * getUserDetailByUserId路径参数对象
   */
-  type getUserDetailByUserId_1PathParams = {
+  type getUserDetailByUserIdPathParams = {
     /**
     * 
     */
@@ -836,6 +966,56 @@ declare namespace API {
     * 
     */
     userId: number;
+  };
+
+  /**
+  * getUserPageInfo_1查询参数对象
+  */
+  type getUserPageInfo_1QueryParams = {
+    /**
+    * 
+    */
+    request: DealerUserPageQueryRequest;
+  };
+
+  /**
+  * getUserDetailByUserId_1路径参数对象
+  */
+  type getUserDetailByUserId_1PathParams = {
+    /**
+    * 
+    */
+    userId: number;
+  };
+
+  /**
+  * getBuyerPageInfo查询参数对象
+  */
+  type getBuyerPageInfoQueryParams = {
+    /**
+    * 
+    */
+    request: BuyerPageQueryRequest;
+  };
+
+  /**
+  * getBuyerDetailByBuyerId路径参数对象
+  */
+  type getBuyerDetailByBuyerIdPathParams = {
+    /**
+    * 
+    */
+    BuyerId: number;
+  };
+
+  /**
+  * getDealerPageInfo查询参数对象
+  */
+  type getDealerPageInfoQueryParams = {
+    /**
+    * 
+    */
+    request: DealerPageQueryRequest;
   };
 
   /**

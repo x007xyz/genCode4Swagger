@@ -1233,6 +1233,26 @@ declare namespace API {
   };
 
   /**
+  * 新车下架请求
+  */
+  type AdmNewCarSoldOutReq = {
+    /**
+    * 下架原因
+    */
+    reason?: string;
+  };
+
+  /**
+  * 新车退库请求
+  */
+  type AdmNewCarReturnReq = {
+    /**
+    * 退库原因
+    */
+    reason?: string;
+  };
+
+  /**
   * 结果
   */
   type ResultInteger = {
@@ -1943,35 +1963,35 @@ declare namespace API {
     */
     pageSize?: number;
     /**
-    * 
+    * VIN码
     */
     vinCode?: string;
     /**
-    * 
+    * 供应商名称
     */
     sellerName?: string;
     /**
-    * 
+    * 有无图片 1:有 0:无
     */
     hasPic?: number;
     /**
-    * 
+    * 库存（最小）
     */
     stockMin?: number;
     /**
-    * 
+    * 库存（最大）
     */
     stockMax?: number;
     /**
-    * 
+    * 零售价，单位：分（最小）
     */
     retailPriceMin?: number;
     /**
-    * 
+    * 零售价，单位：分 （最大）
     */
     retailPriceMax?: number;
     /**
-    * 
+    * 车辆状态 1:在库未上架 2:在售 3:退库 9:待上传照片
     */
     carStatus?: number;
   };
@@ -4047,6 +4067,46 @@ declare namespace API {
   };
 
   /**
+  * getNewCarList查询参数对象
+  */
+  type getNewCarListQueryParams = {
+    /**
+    * 
+    */
+    req: AdmNewCarQueryReq;
+  };
+
+  /**
+  * soldOutNewCar路径参数对象
+  */
+  type soldOutNewCarPathParams = {
+    /**
+    * 
+    */
+    spuId: number;
+  };
+
+  /**
+  * shelfNewCar路径参数对象
+  */
+  type shelfNewCarPathParams = {
+    /**
+    * 
+    */
+    spuId: number;
+  };
+
+  /**
+  * returnNewCar路径参数对象
+  */
+  type returnNewCarPathParams = {
+    /**
+    * 
+    */
+    spuId: number;
+  };
+
+  /**
   * returnBack路径参数对象
   */
   type returnBackPathParams = {
@@ -4087,6 +4147,16 @@ declare namespace API {
   };
 
   /**
+  * autosMaintenanceCallBack查询参数对象
+  */
+  type autosMaintenanceCallBackQueryParams = {
+    /**
+    * 
+    */
+    req: Record<string, any>;
+  };
+
+  /**
   * getCustomerDet路径参数对象
   */
   type getCustomerDetPathParams = {
@@ -4094,6 +4164,16 @@ declare namespace API {
     * 
     */
     userId: string;
+  };
+
+  /**
+  * getCarDealerList查询参数对象
+  */
+  type getCarDealerListQueryParams = {
+    /**
+    * 
+    */
+    req: CarDealerQueryRequest;
   };
 
   /**
@@ -4117,6 +4197,16 @@ declare namespace API {
   };
 
   /**
+  * getCarNewPrice查询参数对象
+  */
+  type getCarNewPriceQueryParams = {
+    /**
+    * 
+    */
+    modelId: number;
+  };
+
+  /**
   * getCarMaintenanceInfo路径参数对象
   */
   type getCarMaintenanceInfoPathParams = {
@@ -4124,6 +4214,26 @@ declare namespace API {
     * 
     */
     vinCode: string;
+  };
+
+  /**
+  * getBrandList查询参数对象
+  */
+  type getBrandListQueryParams = {
+    /**
+    * 
+    */
+    req: CarBrandRequest;
+  };
+
+  /**
+  * getCarPage查询参数对象
+  */
+  type getCarPageQueryParams = {
+    /**
+    * 
+    */
+    req: CarQueryRequest;
   };
 
   /**
@@ -4174,6 +4284,26 @@ declare namespace API {
     * 
     */
     carId: number;
+  };
+
+  /**
+  * getChangePriceRecord查询参数对象
+  */
+  type getChangePriceRecordQueryParams = {
+    /**
+    * 
+    */
+    req: AdmCarChangePriceQueryRequest;
+  };
+
+  /**
+  * getBrandList_1查询参数对象
+  */
+  type getBrandList_1QueryParams = {
+    /**
+    * 
+    */
+    req: CarBrandRequest;
   };
 
 }

@@ -817,6 +817,16 @@ declare namespace API {
   };
 
   /**
+  * logout查询参数对象
+  */
+  type logoutQueryParams = {
+    /**
+    * 
+    */
+    userId: number;
+  };
+
+  /**
   * getUserRoleInfoByUserId路径参数对象
   */
   type getUserRoleInfoByUserIdPathParams = {
@@ -834,6 +844,16 @@ declare namespace API {
     * 
     */
     userId: number;
+  };
+
+  /**
+  * getRolePageInfo查询参数对象
+  */
+  type getRolePageInfoQueryParams = {
+    /**
+    * 
+    */
+    request: RolePageQueryRequest;
   };
 
   /**
@@ -864,6 +884,16 @@ declare namespace API {
     * 
     */
     roleId: number;
+  };
+
+  /**
+  * getPermissionPageInfo查询参数对象
+  */
+  type getPermissionPageInfoQueryParams = {
+    /**
+    * 
+    */
+    request: PermissionPageQueryRequest;
   };
 
   /**

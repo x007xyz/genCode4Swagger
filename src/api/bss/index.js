@@ -2,7 +2,7 @@ import request from '@/utils/request';
 
 /**
  * 获取地址 get /bss/v1/address
- * @param {API.AddressQueryRequest} query - query查询参数 
+ * @param {API.getListQueryParams} query - query查询参数 
  * @returns {Promise<API.AddressListResponse[]>} - 返回一个Promise，解析为响应数据对象
  */
 export async function getList( 

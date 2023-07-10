@@ -990,4 +990,14 @@ declare namespace API {
     bannerId: string;
   };
 
+  /**
+  * getList查询参数对象
+  */
+  type getListQueryParams = {
+    /**
+    * 
+    */
+    req: AddressQueryRequest;
+  };
+
 }

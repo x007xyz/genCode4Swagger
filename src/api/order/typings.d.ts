@@ -833,6 +833,56 @@ declare namespace API {
   };
 
   /**
+  * listCommissionRoles查询参数对象
+  */
+  type listCommissionRolesQueryParams = {
+    /**
+    * 
+    */
+    request: CommissionRoleListRequest;
+  };
+
+  /**
+  * listCommissionPlans查询参数对象
+  */
+  type listCommissionPlansQueryParams = {
+    /**
+    * 
+    */
+    request: CommissionPlanPageRequest;
+  };
+
+  /**
+  * getCommissionPlanDetail查询参数对象
+  */
+  type getCommissionPlanDetailQueryParams = {
+    /**
+    * 
+    */
+    planId: number;
+  };
+
+  /**
+  * queryOrderPage查询参数对象
+  */
+  type queryOrderPageQueryParams = {
+    /**
+    * 
+    */
+    request: PortalOrderPageRequest;
+  };
+
+  /**
+  * exportOrder查询参数对象
+  */
+  type exportOrderQueryParams = {
+    /**
+    * 
+    */
+    exportOrderRequest: ExportOrderRequest;
+  };
+
+  /**
   * getOrderDetail路径参数对象
   */
   type getOrderDetailPathParams = {
@@ -840,6 +890,16 @@ declare namespace API {
     * 
     */
     subOrderNo: string;
+  };
+
+  /**
+  * queryPaymentList查询参数对象
+  */
+  type queryPaymentListQueryParams = {
+    /**
+    * 
+    */
+    paymentQueryRequest: PaymentQueryRequest;
   };
 
 }

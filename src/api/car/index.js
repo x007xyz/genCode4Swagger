@@ -15,7 +15,7 @@ export async function getNewCarDet(
 }
 
 /**
- * 新增新车 put /car/v1/newCar/${spuId}
+ * 编辑新车 put /car/v1/newCar/${spuId}
  * @param {API.editNewCarPathParams} params - path参数 
  * @param {API.NewCarSpuEditReq} body - body请求体数据 
  * @returns {Promise<number>} - 返回一个Promise，解析为响应数据对象
@@ -33,7 +33,7 @@ export async function editNewCar(
 
 /**
  * 新车列表 get /car/v1/newCar
- * @param {API.AdmNewCarQueryReq} query - query查询参数 
+ * @param {API.getNewCarListQueryParams} query - query查询参数 
  * @returns {Promise<API.PageModelAdmNewCarListResp>} - 返回一个Promise，解析为响应数据对象
  */
 export async function getNewCarList( 
@@ -60,8 +60,56 @@ export async function addNewCar(
 }
 
 /**
+ * 新车下架 post /car/v1/newCar/${spuId}:soldOut
+ * @param {API.soldOutNewCarPathParams} params - path参数 
+ * @param {API.AdmNewCarSoldOutReq} body - body请求体数据 
+ * @returns {Promise<boolean>} - 返回一个Promise，解析为响应数据对象
+ */
+export async function soldOutNewCar(
+  params, 
+  body
+) {
+  const { spuId } = params;
+  return request(`/car/v1/newCar/${spuId}:soldOut`, {
+    method: "post",
+    data: body,
+  });
+}
+
+/**
+ * 新车上架 post /car/v1/newCar/${spuId}:shelf
+ * @param {API.shelfNewCarPathParams} params - path参数 
+ * @returns {Promise<boolean>} - 返回一个Promise，解析为响应数据对象
+ */
+export async function shelfNewCar(
+  params, 
+) {
+  const { spuId } = params;
+  return request(`/car/v1/newCar/${spuId}:shelf`, {
+    method: "post",
+  });
+}
+
+/**
+ * 新车退库 post /car/v1/newCar/${spuId}:return
+ * @param {API.returnNewCarPathParams} params - path参数 
+ * @param {API.AdmNewCarReturnReq} body - body请求体数据 
+ * @returns {Promise<boolean>} - 返回一个Promise，解析为响应数据对象
+ */
+export async function returnNewCar(
+  params, 
+  body
+) {
+  const { spuId } = params;
+  return request(`/car/v1/newCar/${spuId}:return`, {
+    method: "post",
+    data: body,
+  });
+}
+
+/**
  * 获取车辆品牌数据 get /car/v1/brand/byLevel
- * @param {API.CarBrandRequest} query - query查询参数 
+ * @param {API.getBrandList_1QueryParams} query - query查询参数 
  * @returns {Promise<API.CarBrandResponse[]>} - 返回一个Promise，解析为响应数据对象
  */
 export async function getBrandList_1( 
@@ -75,7 +123,7 @@ export async function getBrandList_1(
 
 /**
  * 第一搜车维保回调 post /car/v1/callback/autosMaintenance
- * @param {Record<string, any>} query - query查询参数 
+ * @param {API.autosMaintenanceCallBackQueryParams} query - query查询参数 
  * @returns {Promise<API.undefined>} - 返回一个Promise，解析为响应数据对象
  */
 export async function autosMaintenanceCallBack( 
@@ -313,7 +361,7 @@ export async function getCustomerDet(
 
 /**
  * 获取车商List get /car/v1/users/carDealer
- * @param {API.CarDealerQueryRequest} query - query查询参数 
+ * @param {API.getCarDealerListQueryParams} query - query查询参数 
  * @returns {Promise<API.CarDealerListResponse[]>} - 返回一个Promise，解析为响应数据对象
  */
 export async function getCarDealerList( 
@@ -383,7 +431,7 @@ export async function drivingLicenseOcr(
 
 /**
  * 获取车辆新车指导价 get /car/v1/extend/carNewPrice
- * @param {number} query - query查询参数 
+ * @param {API.getCarNewPriceQueryParams} query - query查询参数 
  * @returns {Promise<number>} - 返回一个Promise，解析为响应数据对象
  */
 export async function getCarNewPrice( 
@@ -411,7 +459,7 @@ export async function getCarMaintenanceInfo(
 
 /**
  * 获取车辆品牌数据 get /car/v1/extend/brandList
- * @param {API.CarBrandRequest} query - query查询参数 
+ * @param {API.getBrandListQueryParams} query - query查询参数 
  * @returns {Promise<API.CarBrandResponse[]>} - 返回一个Promise，解析为响应数据对象
  */
 export async function getBrandList( 
@@ -616,7 +664,7 @@ export async function addBaseCar(
 
 /**
  * 车辆列表分页 get /car/v1/cars:page
- * @param {API.CarQueryRequest} query - query查询参数 
+ * @param {API.getCarPageQueryParams} query - query查询参数 
  * @returns {Promise<API.PageModelCarListResponse>} - 返回一个Promise，解析为响应数据对象
  */
 export async function getCarPage( 
@@ -687,7 +735,7 @@ export async function getCarParam(
 /**
  * 调价记录列表 get /car/v1/cars/${carId}/changePriceList
  * @param {API.getChangePriceRecordPathParams} params - path参数 
- * @param {API.AdmCarChangePriceQueryRequest} query - query查询参数 
+ * @param {API.getChangePriceRecordQueryParams} query - query查询参数 
  * @returns {Promise<API.CarChangePriceListResponse[]>} - 返回一个Promise，解析为响应数据对象
  */
 export async function getChangePriceRecord(

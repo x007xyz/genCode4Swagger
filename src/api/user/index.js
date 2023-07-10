@@ -1,7 +1,7 @@
 import request from '@/utils/request';
 
 /**
- * 查询车务用户角色列表 - 已绑定的 get /user/v1/b/user/${userId}/types:checked
+ * 查询服务者用户角色列表 - 已绑定的 get /user/v1/server-user/${userId}/biz-role:bound
  * @param {API.getUserTypeByUserIdPathParams} params - path参数 
  * @returns {Promise<API.ServerUserTypeDetailResponse[]>} - 返回一个Promise，解析为响应数据对象
  */
@@ -9,17 +9,17 @@ export async function getUserTypeByUserId(
   params, 
 ) {
   const { userId } = params;
-  return request(`/user/v1/b/user/${userId}/types:checked`, {
+  return request(`/user/v1/server-user/${userId}/biz-role:bound`, {
     method: "get",
   });
 }
 
 /**
- * 查询车务用户角色列表 get /user/v1/b/user-types
+ * 查询服务者用户角色列表 get /user/v1/server-user-biz-role
  * @returns {Promise<API.ServerUserTypeDetailResponse[]>} - 返回一个Promise，解析为响应数据对象
  */
 export async function getUserTypePageInfo() {
-  return request(`/user/v1/b/user-types`, {
+  return request(`/user/v1/server-user-biz-role`, {
     method: "get",
   });
 }
@@ -29,7 +29,7 @@ export async function getUserTypePageInfo() {
  * @param {API.DealerUserAddRequest} body - body请求体数据 
  * @returns {Promise<API.DealerUserDetailResponse>} - 返回一个Promise，解析为响应数据对象
  */
-export async function insertUser( 
+export async function insertUser_1( 
   body
 ) {
   return request(`/user/v1/c/user`, {
@@ -40,10 +40,10 @@ export async function insertUser(
 
 /**
  * 查询车商用户列表 get /user/v1/c/user:page
- * @param {API.DealerUserPageQueryRequest} query - query查询参数 
+ * @param {API.getUserPageInfo_1QueryParams} query - query查询参数 
  * @returns {Promise<API.PageModelDealerUserDetailResponse>} - 返回一个Promise，解析为响应数据对象
  */
-export async function getUserPageInfo( 
+export async function getUserPageInfo_1( 
   query,
 ) {
   return request(`/user/v1/c/user:page`, {
@@ -54,10 +54,10 @@ export async function getUserPageInfo(
 
 /**
  * 查询车商用户详情 — 依据用户ID get /user/v1/c/user/${userId}
- * @param {API.getUserDetailByUserIdPathParams} params - path参数 
+ * @param {API.getUserDetailByUserId_1PathParams} params - path参数 
  * @returns {Promise<API.DealerUserDetailResponse>} - 返回一个Promise，解析为响应数据对象
  */
-export async function getUserDetailByUserId(
+export async function getUserDetailByUserId_1(
   params, 
 ) {
   const { userId } = params;
@@ -96,7 +96,7 @@ export async function insertEnterpriseDealer(
 
 /**
  * 分页查询车商 get /user/v1/b/dealer:page
- * @param {API.DealerPageQueryRequest} query - query查询参数 
+ * @param {API.getDealerPageInfoQueryParams} query - query查询参数 
  * @returns {Promise<API.PageModelDealerDetailResponse>} - 返回一个Promise，解析为响应数据对象
  */
 export async function getDealerPageInfo( 
@@ -137,71 +137,99 @@ export async function dealerOpenFinanceAccount(
 }
 
 /**
- * 新增车务用户 post /user/v1/b/user
- * @param {API.ServerUserAddRequest} body - body请求体数据 
- * @returns {Promise<API.ServerUserDetailResponse>} - 返回一个Promise，解析为响应数据对象
+ * 分页查询买家用户 get /user/v1/buyer:page
+ * @param {API.getBuyerPageInfoQueryParams} query - query查询参数 
+ * @returns {Promise<API.PageModelBuyerResponse>} - 返回一个Promise，解析为响应数据对象
  */
-export async function insertUser_1( 
-  body
-) {
-  return request(`/user/v1/b/user`, {
-    method: "post",
-    data: body,
-  });
-}
-
-/**
- * 车务用户解绑用户身份 post /user/v1/b/user:unBindUserType
- * @param {API.ServerUserUnbindUserTypeReq} body - body请求体数据 
- * @returns {Promise<Record<string, any>>} - 返回一个Promise，解析为响应数据对象
- */
-export async function userUnbindUserType( 
-  body
-) {
-  return request(`/user/v1/b/user:unBindUserType`, {
-    method: "post",
-    data: body,
-  });
-}
-
-/**
- * 车务用户绑定用户身份 post /user/v1/b/user:bindUserType
- * @param {API.ServerUserBindUserTypeReq} body - body请求体数据 
- * @returns {Promise<Record<string, any>>} - 返回一个Promise，解析为响应数据对象
- */
-export async function userBindUserType( 
-  body
-) {
-  return request(`/user/v1/b/user:bindUserType`, {
-    method: "post",
-    data: body,
-  });
-}
-
-/**
- * 查询车务用户列表 get /user/v1/b/user:page
- * @param {API.ServerUserPageQueryRequest} query - query查询参数 
- * @returns {Promise<API.PageModelServerUserDetailResponse>} - 返回一个Promise，解析为响应数据对象
- */
-export async function getUserPageInfo_1( 
+export async function getBuyerPageInfo( 
   query,
 ) {
-  return request(`/user/v1/b/user:page`, {
+  return request(`/user/v1/buyer:page`, {
     method: "get",
     params: query,
   });
 }
 
 /**
- * 查询车务用户详情 — 依据用户ID get /user/v1/b/user/${userId}
- * @param {API.getUserDetailByUserId_1PathParams} params - path参数 
+ * 查询买家用户详情 get /user/v1/buyer/${BuyerId}
+ * @param {API.getBuyerDetailByBuyerIdPathParams} params - path参数 
+ * @returns {Promise<API.BuyerResponse>} - 返回一个Promise，解析为响应数据对象
+ */
+export async function getBuyerDetailByBuyerId(
+  params, 
+) {
+  const { BuyerId } = params;
+  return request(`/user/v1/buyer/${BuyerId}`, {
+    method: "get",
+  });
+}
+
+/**
+ * 新增服务者用户 post /user/v1/server-user
+ * @param {API.ServerUserAddRequest} body - body请求体数据 
  * @returns {Promise<API.ServerUserDetailResponse>} - 返回一个Promise，解析为响应数据对象
  */
-export async function getUserDetailByUserId_1(
+export async function insertUser( 
+  body
+) {
+  return request(`/user/v1/server-user`, {
+    method: "post",
+    data: body,
+  });
+}
+
+/**
+ * 服务者用户解绑用户身份 post /user/v1/server-user:unBindUserType
+ * @param {API.ServerUserUnbindUserTypeReq} body - body请求体数据 
+ * @returns {Promise<Record<string, any>>} - 返回一个Promise，解析为响应数据对象
+ */
+export async function userUnbindUserType( 
+  body
+) {
+  return request(`/user/v1/server-user:unBindUserType`, {
+    method: "post",
+    data: body,
+  });
+}
+
+/**
+ * 服务者用户绑定用户身份 post /user/v1/server-user:bindUserType
+ * @param {API.ServerUserBindUserTypeReq} body - body请求体数据 
+ * @returns {Promise<Record<string, any>>} - 返回一个Promise，解析为响应数据对象
+ */
+export async function userBindUserType( 
+  body
+) {
+  return request(`/user/v1/server-user:bindUserType`, {
+    method: "post",
+    data: body,
+  });
+}
+
+/**
+ * 查询服务者用户列表 get /user/v1/server-user:page
+ * @param {API.getUserPageInfoQueryParams} query - query查询参数 
+ * @returns {Promise<API.PageModelServerUserDetailResponse>} - 返回一个Promise，解析为响应数据对象
+ */
+export async function getUserPageInfo( 
+  query,
+) {
+  return request(`/user/v1/server-user:page`, {
+    method: "get",
+    params: query,
+  });
+}
+
+/**
+ * 查询服务者用户详情 — 依据用户ID get /user/v1/server-user/${userId}
+ * @param {API.getUserDetailByUserIdPathParams} params - path参数 
+ * @returns {Promise<API.ServerUserDetailResponse>} - 返回一个Promise，解析为响应数据对象
+ */
+export async function getUserDetailByUserId(
   params, 
 ) {
   const { userId } = params;
-  return request(`/user/v1/b/user/${userId}`, {
+  return request(`/user/v1/server-user/${userId}`, {
     method: "get",
   });
 }

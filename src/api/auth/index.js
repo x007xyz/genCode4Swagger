@@ -2,7 +2,7 @@ import request from '@/utils/request';
 
 /**
  * Portal-验证码登录 post /auth/v1/logout
- * @param {number} query - query查询参数 
+ * @param {API.logoutQueryParams} query - query查询参数 
  * @returns {Promise<Record<string, any>>} - 返回一个Promise，解析为响应数据对象
  */
 export async function logout( 
@@ -120,7 +120,7 @@ export async function getUserRoleInfoByUserId(
 
 /**
  * 分页查询角色 get /auth/v1/role:page
- * @param {API.RolePageQueryRequest} query - query查询参数 
+ * @param {API.getRolePageInfoQueryParams} query - query查询参数 
  * @returns {Promise<API.PageModelRoleResponse>} - 返回一个Promise，解析为响应数据对象
  */
 export async function getRolePageInfo( 
@@ -214,7 +214,7 @@ export async function getPermissionTreeInfo(
 
 /**
  * 分页查询权限 get /auth/v1/permission:page
- * @param {API.PermissionPageQueryRequest} query - query查询参数 
+ * @param {API.getPermissionPageInfoQueryParams} query - query查询参数 
  * @returns {Promise<API.PageModelPermissionResponse>} - 返回一个Promise，解析为响应数据对象
  */
 export async function getPermissionPageInfo( 

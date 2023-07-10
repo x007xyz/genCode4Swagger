@@ -316,6 +316,8 @@ class APIDoc {
     let queryParams: string = "";
     let pathParams: string = "";
     if (parameters) {
+      const queryProperties = {};
+      const queryRequired = [];
       const pathProperties = {};
       const pathRequired = [];
       parameters.forEach((param) => {
@@ -323,7 +325,10 @@ class APIDoc {
           queryParams = getRefName(param.$ref);
         } else {
           if (param.in === "query") {
-            queryParams = getType(param.schema);
+            queryProperties[param.name] = getType(param.schema);
+            if (param.required) {
+              queryRequired.push(param.name);
+            }
           }
           if (param.in === "path") {
             pathProperties[param.name] = param.schema;
@@ -334,10 +339,10 @@ class APIDoc {
         }
       });
       if (Object.keys(pathProperties).length > 0) {
-        /**
-         * TODO: 将pathProperties存储到entities中，然后返回schema的名称
-         */
         pathParams = this.addEntity(pathProperties, `${pathObj.operationId}PathParams`, pathRequired, `${pathObj.operationId}路径参数对象`)
+      }
+      if (Object.keys(queryProperties).length > 0) {
+        queryParams = this.addEntity(queryProperties, `${pathObj.operationId}QueryParams`, queryRequired, `${pathObj.operationId}查询参数对象`)
       }
     }
     return { queryParams, pathParams };

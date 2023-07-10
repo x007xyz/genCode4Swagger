@@ -2,7 +2,7 @@ import request from '@/utils/request';
 
 /**
  * 订单列表 get /order/v1/orders:page
- * @param {API.PortalOrderPageRequest} query - query查询参数 
+ * @param {API.queryOrderPageQueryParams} query - query查询参数 
  * @returns {Promise<API.PageModelPortalOrderListResponse>} - 返回一个Promise，解析为响应数据对象
  */
 export async function queryOrderPage( 
@@ -16,7 +16,7 @@ export async function queryOrderPage(
 
 /**
  * 导出订单 get /order/v1/orders:exportOrder
- * @param {API.ExportOrderRequest} query - query查询参数 
+ * @param {API.exportOrderQueryParams} query - query查询参数 
  * @returns {Promise<API.undefined>} - 返回一个Promise，解析为响应数据对象
  */
 export async function exportOrder( 
@@ -44,7 +44,7 @@ export async function getOrderDetail(
 
 /**
  * 收款记录列表 get /order/v1/orders/payment:page
- * @param {API.PaymentQueryRequest} query - query查询参数 
+ * @param {API.queryPaymentListQueryParams} query - query查询参数 
  * @returns {Promise<API.PageModelPaymentListResponse>} - 返回一个Promise，解析为响应数据对象
  */
 export async function queryPaymentList( 
@@ -100,7 +100,7 @@ export async function updateCommissionPlan(
 
 /**
  * 列表 get /order/v1/portal/commission/plan:page
- * @param {API.CommissionPlanPageRequest} query - query查询参数 
+ * @param {API.listCommissionPlansQueryParams} query - query查询参数 
  * @returns {Promise<API.PageModelCommissionPlanListResponse>} - 返回一个Promise，解析为响应数据对象
  */
 export async function listCommissionPlans( 
@@ -114,7 +114,7 @@ export async function listCommissionPlans(
 
 /**
  * 详情 get /order/v1/portal/commission/plan/detail
- * @param {number} query - query查询参数 
+ * @param {API.getCommissionPlanDetailQueryParams} query - query查询参数 
  * @returns {Promise<API.CommissionPlanDetailResponse>} - 返回一个Promise，解析为响应数据对象
  */
 export async function getCommissionPlanDetail( 
@@ -128,7 +128,7 @@ export async function getCommissionPlanDetail(
 
 /**
  * 列表 get /order/v1/portal/commission/role:page
- * @param {API.CommissionRoleListRequest} query - query查询参数 
+ * @param {API.listCommissionRolesQueryParams} query - query查询参数 
  * @returns {Promise<API.PageModelCommissionRoleListResponse>} - 返回一个Promise，解析为响应数据对象
  */
 export async function listCommissionRoles( 
