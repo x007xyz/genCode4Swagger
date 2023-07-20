@@ -1,0 +1,34 @@
+name: 发布 npm 包
+
+on:
+  push:
+    tags:
+      - v*  # 触发工作流的 tag 模式，v* 表示所有以 v 开头的 tag
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 检出代码
+      uses: actions/checkout@v2
+
+    - name: 设置 Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 'v16.18.0'  # 使用你喜欢的 Node.js 版本
+        registry-url: 'https://registry.npmjs.org'
+
+    - name: 安装 pnpm
+      run: npm install -g pnpm
+
+    - name: 安装依赖
+      run: pnpm install  # 或者根据你的包管理器使用 'npm ci' 或 'yarn'
+
+    - name: 构建
+      run: pnpm run build  # 替换为你用来构建项目的命令
+
+    - name: 发布 npm 包
+      run: npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
