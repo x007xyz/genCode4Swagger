@@ -17,7 +17,8 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: 'v16.18.0'  # 使用你喜欢的 Node.js 版本
-
+    - name: 安装 pnpm
+      run: npm install -g pnpm
     - name: 安装依赖
       run: pnpm ci  # 或者根据你的包管理器使用 'pnpm ci' 或 'yarn'
 
