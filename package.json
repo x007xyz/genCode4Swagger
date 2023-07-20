@@ -1,6 +1,6 @@
 {
   "name": "gencode4swagger",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Generate API request documentation using Swagger.",
   "main": "dist/index.js",
   "bin": "dist/index.js",
@@ -9,7 +9,7 @@
     "build:doc": "jsdoc2md --files ./src/index.ts --configure ./jsdoc2md.json > README.md",
     "postbuild:doc": "git diff --quiet --exit-code README.md || (git add README.md && git commit -m 'Update README.md')",
     "update:version": "standard-version",
-    "release": "npm run update:version && git push --follow-tags origin master"
+    "release": "npm run update:version && git push --follow-tags origin main"
   },
   "keywords": [
     "Swagger",
