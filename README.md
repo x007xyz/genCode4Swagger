@@ -22,7 +22,7 @@
 **Example**  
 ```js
 // generateService 的使用示例
-generateService('path/to/schema', {
+generateService('schemaPath', {
   templateDir: 'path/to/template',
   outputPath: 'path/to/output',
   prefix: 'api',
