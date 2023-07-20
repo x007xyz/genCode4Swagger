@@ -1,14 +1,16 @@
 {
   "name": "gencode4swagger",
   "version": "0.2.0",
-  "description": "",
+  "description": "Generate API request documentation using Swagger.",
   "main": "dist/index.js",
   "bin": "dist/index.js",
   "scripts": {
     "build": "tsc",
+    "build:doc": "jsdoc2md --files ./src/index.ts --configure ./jsdoc2md.json > README.md",
+    "postbuild:doc": "git diff --quiet --exit-code README.md || (git add README.md && git commit -m 'Update README.md')",
     "update:version": "standard-version",
     "release": "npm run update:version && git push --follow-tags origin master",
-    "postpublish": "npm run build && npm publish"
+    "prepublish": "npm run build"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +24,13 @@
     "ts-node": "^10.9.1"
   },
   "devDependencies": {
-    "standard-version": "^9.5.0"
+    "@babel/cli": "^7.22.9",
+    "@babel/core": "^7.22.9",
+    "@babel/preset-env": "^7.22.9",
+    "@babel/preset-typescript": "^7.22.5",
+    "jsdoc-babel": "^0.5.0",
+    "jsdoc-to-markdown": "^8.0.0",
+    "standard-version": "^9.5.0",
+    "typescript": "^5.1.6"
   }
 }

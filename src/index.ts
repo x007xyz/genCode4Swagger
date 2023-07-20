@@ -62,11 +62,7 @@ const getSchema = async (schemaPath: string) => {
   const schema = require(schemaPath);
   return schema;
 };
-/**
- * 根据 schemaPath 获取 openAPI 配置对象
- * @param schemaPath 
- * @returns 
- */
+
 const getOpenAPIConfig = async (schemaPath: string) => {
   const schema = await getSchema(schemaPath);
   if (!schema) {
@@ -75,7 +71,29 @@ const getOpenAPIConfig = async (schemaPath: string) => {
   const openAPI = await converterSwaggerToOpenApi(schema);
   return openAPI;
 };
-
+/**
+ * 根据提供的 schema 和配置生成服务文件。
+ *
+ * @param {string} schemaPath - schema 的路径。
+ * @param {ConfigOptions} config - 配置选项。
+ * @param {string} config.templateDir - 模板目录的路径。
+ * @param {string} config.outputPath - 输出目录的路径。
+ * @param {string} config.prefix - api 的前缀。
+ * @param {string[]} config.ignore - 忽略的路径列表。
+ * @param {string} config.dir - 生成的 api 文件的目录。
+ * @param {'ts' | 'js'} config.mode - 生成文件的模式（'ts' 或 'js'）。
+ * @returns {Promise<void>} - 返回一个 Promise，当所有操作完成时 resolve。
+ * @example
+ * // generateService 的使用示例
+ * generateService('path/to/schema', {
+ *   templateDir: 'path/to/template',
+ *   outputPath: 'path/to/output',
+ *   prefix: 'api',
+ *   ignore: ['ignore1', 'ignore2'],
+ *   dir: 'api',
+ *   mode: 'ts'
+ * });
+ */
 export const generateService = async (schemaPath: string, config: ConfigOptions) => {
 
   const { templateDir, outputDir } = Object.assign({
