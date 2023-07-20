@@ -85,7 +85,7 @@ const getOpenAPIConfig = async (schemaPath: string) => {
  * @returns {Promise<void>} - 返回一个 Promise，当所有操作完成时 resolve。
  * @example
  * // generateService 的使用示例
- * generateService('path/to/schema', {
+ * generateService('schemaPath', {
  *   templateDir: 'path/to/template',
  *   outputPath: 'path/to/output',
  *   prefix: 'api',

@@ -1,0 +1,32 @@
+name: 文档构建
+
+on:
+  push:
+    branches:
+      - main  # 如果默认分支不是 'main'，请替换为你的默认分支
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 检出代码
+      uses: actions/checkout@v2
+
+    - name: 设置 Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 'v16.18.0'  # 使用你喜欢的 Node.js 版本
+
+    - name: 安装依赖
+      run: pnpm ci  # 或者根据你的包管理器使用 'pnpm ci' 或 'yarn'
+
+    - name: 设置git信息
+      env:
+        GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+
+    - name: 构建文档
+      run: npm run build:doc  # 替换为你用来构建文档的命令
