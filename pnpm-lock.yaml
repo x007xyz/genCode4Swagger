@@ -34,6 +34,9 @@ devDependencies:
   '@babel/core':
     specifier: ^7.22.9
     version: 7.22.9
+  '@babel/plugin-proposal-object-rest-spread':
+    specifier: ^7.20.7
+    version: 7.20.7(@babel/core@7.22.9)
   '@babel/preset-env':
     specifier: ^7.22.9
     version: 7.22.9(@babel/core@7.22.9)
@@ -364,6 +367,20 @@ packages:
       '@babel/helper-create-class-features-plugin': 7.22.9(@babel/core@7.22.9)
       '@babel/helper-plugin-utils': 7.22.5
     dev: false
+
+  /@babel/plugin-proposal-object-rest-spread@7.20.7(@babel/core@7.22.9):
+    resolution: {integrity: sha512-d2S98yCiLxDVmBmE8UjGcfPvNEUbA1U5q5WxaWFUGRzJSVAZqm5W6MbPct0jxnegUZ0niLeNX+IOzEs7wYg9Dg==}
+    engines: {node: '>=6.9.0'}
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    dependencies:
+      '@babel/compat-data': 7.22.9
+      '@babel/core': 7.22.9
+      '@babel/helper-compilation-targets': 7.22.9(@babel/core@7.22.9)
+      '@babel/helper-plugin-utils': 7.22.5
+      '@babel/plugin-syntax-object-rest-spread': 7.8.3(@babel/core@7.22.9)
+      '@babel/plugin-transform-parameters': 7.22.5(@babel/core@7.22.9)
+    dev: true
 
   /@babel/plugin-proposal-private-property-in-object@7.21.0-placeholder-for-preset-env.2(@babel/core@7.22.9):
     resolution: {integrity: sha512-SOSkfJDddaM7mak6cPEpswyTRnuRltl429hMraQEglW+OkovnCzsiszTmsrlY//qLFjCpQDFRvjdm2wA5pPm9w==}
