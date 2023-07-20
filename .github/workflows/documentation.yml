@@ -24,7 +24,7 @@ jobs:
 
     - name: 设置git信息
       env:
-        GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
