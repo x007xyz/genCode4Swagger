@@ -20,7 +20,7 @@ jobs:
     - name: 安装 pnpm
       run: npm install -g pnpm
     - name: 安装依赖
-      run: pnpm ci  # 或者根据你的包管理器使用 'pnpm ci' 或 'yarn'
+      run: pnpm install  # 或者根据你的包管理器使用 'pnpm ci' 或 'yarn'
 
     - name: 设置git信息
       env:

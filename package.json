@@ -12,7 +12,7 @@
     "release": "npm run update:version && git push --follow-tags origin master",
     "prepublish": "npm run build"
   },
-  "keywords": [],
+  "keywords": ["Swagger", "OpenAPI", "API", "documentation", "generate"],
   "author": "",
   "license": "ISC",
   "dependencies": {
