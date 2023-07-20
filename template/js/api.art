@@ -5,18 +5,21 @@ import request from '@/utils/request';
  * @param {<%- $imports.typeFormat(paths[i].pathParams) %>} params - path参数 <% } %><% if (paths[i].queryParams) { %>
  * @param {<%- $imports.typeFormat(paths[i].queryParams) %>} query - query查询参数 <% } %><% if (paths[i].body) { %>
  * @param {<%- $imports.typeFormat(paths[i].body) %>} body - body请求体数据 <% } %>
+ * @param {} options - 其他选项
  * @returns {Promise<<%- $imports.typeFormat(paths[i].result) %>>} - 返回一个Promise，解析为响应数据对象
  */
 export async function <%= paths[i].operationId%>(<% if (paths[i].pathParams || paths[i].queryParams || paths[i].body) {%><% if (paths[i].pathParams) { %>
   params,<% } %> <% if (paths[i].queryParams) {%>
   query,<% } %><% if (paths[i].body) { %>
-  body<% } %>
+  body,<% } %>
+  options
 <% } %>) {<% if (paths[i].pathParams) { %>
   const { <% for (var j = 0; j < paths[i].params.length; j++) { %><%= paths[i].params[j] %> <% } %>} = params;<% } %>
   return request(`<%= paths[i].path %>`, {
     method: "<%= paths[i].method %>",<% if (paths[i].body) { %>
     data: body,<% } %><% if (paths[i].queryParams) { %>
     params: query,<% } %>
+    ...options
   });
 }
 <% } %>

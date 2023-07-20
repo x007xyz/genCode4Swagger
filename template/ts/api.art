@@ -6,13 +6,15 @@ import { request } from 'umi';
 export async function <%= paths[i].operationId%>(<% if (paths[i].pathParams || paths[i].queryParams || paths[i].body) {%><% if (paths[i].pathParams) { %>
   params: <%- $imports.typeFormat(paths[i].pathParams) %>,<% } %> <% if (paths[i].queryParams) {%>
   query: <%- $imports.typeFormat(paths[i].queryParams) %>,<% } %><% if (paths[i].body) { %>
-  body: <%- $imports.typeFormat(paths[i].body) %><% } %>
-<% } %>) {<% if (paths[i].pathParams) { %>
+  body: <%- $imports.typeFormat(paths[i].body) %>,<% } %><% } %>
+  options
+) {<% if (paths[i].pathParams) { %>
   const { <% for (var j = 0; j < paths[i].params.length; j++) { %><%= paths[i].params[j] %> <% } %> } = params;<% } %>
   return request<<%- $imports.typeFormat(paths[i].result) %>>(`<%= paths[i].path %>`, {
     method: "<%= paths[i].method %>",<% if (paths[i].body) { %>
     data: body,<% } %><% if (paths[i].queryParams) { %>
     params: query,<% } %>
+    ...options
   });
 }
 <% } %>
