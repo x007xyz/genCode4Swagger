@@ -1,6 +1,6 @@
 {
   "name": "gencode4swagger",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Generate API request documentation using Swagger.",
   "main": "dist/index.js",
   "bin": "dist/index.js",
