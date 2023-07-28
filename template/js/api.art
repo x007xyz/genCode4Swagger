@@ -11,9 +11,8 @@ import request from '@/utils/request';
 export async function <%= paths[i].operationId%>(<% if (paths[i].pathParams || paths[i].queryParams || paths[i].body) {%><% if (paths[i].pathParams) { %>
   params,<% } %> <% if (paths[i].queryParams) {%>
   query,<% } %><% if (paths[i].body) { %>
-  body,<% } %>
-  options = {}
-<% } %>) {<% if (paths[i].pathParams) { %>
+  body,<% } %><% } %>
+  options = {}) {<% if (paths[i].pathParams) { %>
   const { <% for (var j = 0; j < paths[i].params.length; j++) { %><%= paths[i].params[j] %> <% } %>} = params;<% } %>
   return request(`<%= paths[i].path %>`, {
     method: "<%= paths[i].method %>",<% if (paths[i].body) { %>
