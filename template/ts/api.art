@@ -7,7 +7,7 @@ export async function <%= paths[i].operationId%>(<% if (paths[i].pathParams || p
   params: <%- $imports.typeFormat(paths[i].pathParams) %>,<% } %> <% if (paths[i].queryParams) {%>
   query: <%- $imports.typeFormat(paths[i].queryParams) %>,<% } %><% if (paths[i].body) { %>
   body: <%- $imports.typeFormat(paths[i].body) %>,<% } %><% } %>
-  options
+  options = {}
 ) {<% if (paths[i].pathParams) { %>
   const { <% for (var j = 0; j < paths[i].params.length; j++) { %><%= paths[i].params[j] %> <% } %> } = params;<% } %>
   return request<<%- $imports.typeFormat(paths[i].result) %>>(`<%= paths[i].path %>`, {

@@ -12,7 +12,7 @@ export async function <%= paths[i].operationId%>(<% if (paths[i].pathParams || p
   params,<% } %> <% if (paths[i].queryParams) {%>
   query,<% } %><% if (paths[i].body) { %>
   body,<% } %>
-  options
+  options = {}
 <% } %>) {<% if (paths[i].pathParams) { %>
   const { <% for (var j = 0; j < paths[i].params.length; j++) { %><%= paths[i].params[j] %> <% } %>} = params;<% } %>
   return request(`<%= paths[i].path %>`, {
