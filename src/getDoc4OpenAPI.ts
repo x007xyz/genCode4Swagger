@@ -186,7 +186,7 @@ class APIDoc {
   private _doc: DocAPI;
   private _entities: Entity[];
   private resultKey: string = 'data';
-  constructor(openAPI: OpenAPIObject, config: any = { ignore: [], prefix: '' }) {
+  constructor(openAPI: OpenAPIObject, config: any = { ignore: [], prefix: '', pathReg: '' }) {
     this._doc = {
       title: openAPI?.info?.title,
       path: openAPI.servers[0].url,
@@ -212,6 +212,10 @@ class APIDoc {
 
     // 将path填充到groups中
     Object.keys(openAPI.paths).forEach((path) => {
+      // 对路径做判断，不符合规范的路径不进行处理
+      if (!new RegExp(config.pathReg).test(path)) {
+        return;
+      }
       Object.keys(openAPI.paths[path]).forEach((method) => {
         // 通过tags找到对应的group
         const obj: OperationObject = openAPI.paths[path][method];

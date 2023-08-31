@@ -3,7 +3,6 @@ import https from 'https';
 import fetch from 'node-fetch';
 import path from 'path';
 import converter from 'swagger2openapi';
-import Log from './log';
 import getDoc4OpenAPI from './getDoc4OpenAPI';
 import genFileFromTemplate from './genFileFromTemplate';
 import { mkdir } from './utils';
@@ -13,6 +12,7 @@ interface ConfigOptions {
   outputPath?: string;
   prefix: string;
   ignore?: string[];
+  pathReg?: String;
   dir?: string; // 存放生成的api文件的目录
   mode: 'ts' | 'js';
 }
@@ -29,7 +29,7 @@ const converterSwaggerToOpenApi = (swagger: any) => {
   }
   return new Promise((resolve, reject) => {
     converter.convertObj(swagger, {}, (err, options) => {
-      Log(['💺 将 Swagger 转化为 openAPI']);
+      console.log('💺 将 Swagger 转化为 openAPI');
       if (err) {
         reject(err);
         return;
@@ -79,6 +79,7 @@ const getOpenAPIConfig = async (schemaPath: string) => {
  * @param {string} config.templateDir - 模板目录的路径。
  * @param {string} config.outputPath - 输出目录的路径。
  * @param {string} config.prefix - api 的前缀。
+ * @param {string} config.pathReg - 对路径进行正则判断，不符合的路径不生成。
  * @param {string[]} config.ignore - 忽略的路径列表。
  * @param {string} config.dir - 生成的 api 文件的目录。
  * @param {'ts' | 'js'} config.mode - 生成文件的模式（'ts' 或 'js'）。
@@ -105,7 +106,7 @@ export const generateService = async (schemaPath: string, config: ConfigOptions)
   if (!openAPI) {
     return;
   }
-  const { doc, entities } = getDoc4OpenAPI(openAPI, { prefix: config.prefix, ignore: config.ignore || [] });
+  const { doc, entities } = getDoc4OpenAPI(openAPI, { prefix: config.prefix, ignore: config.ignore || [], pathReg: config.pathReg });
 
   // 生成文件夹
   mkdir(outputDir);

@@ -44,3 +44,5 @@ test/file-servers/
 test/servers-allof/
 
 **/api
+
+/test
