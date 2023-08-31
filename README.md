@@ -15,6 +15,7 @@
 | config.templateDir | <code>string</code> | <p>模板目录的路径。</p> |
 | config.outputPath | <code>string</code> | <p>输出目录的路径。</p> |
 | config.prefix | <code>string</code> | <p>api 的前缀。</p> |
+| config.pathReg | <code>string</code> | <p>对路径进行正则判断，不符合的路径不生成。</p> |
 | config.ignore | <code>Array.&lt;string&gt;</code> | <p>忽略的路径列表。</p> |
 | config.dir | <code>string</code> | <p>生成的 api 文件的目录。</p> |
 | config.mode | <code>&#x27;ts&#x27;</code> \| <code>&#x27;js&#x27;</code> | <p>生成文件的模式（'ts' 或 'js'）。</p> |
