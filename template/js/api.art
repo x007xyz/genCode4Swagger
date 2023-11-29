@@ -1,4 +1,4 @@
-import request from '@/utils/request';
+<%- requestStr%>
 <% for (var i = 0; i < paths.length; i++) {%>
 /**
  * <%= paths[i].summary %> <%= paths[i].method %> <%= paths[i].path %><% if (paths[i].pathParams) { %>
@@ -8,7 +8,7 @@ import request from '@/utils/request';
  * @param {} options - 其他选项
  * @returns {Promise<<%- $imports.typeFormat(paths[i].result) %>>} - 返回一个Promise，解析为响应数据对象
  */
-export async function <%= paths[i].operationId%>(<% if (paths[i].pathParams || paths[i].queryParams || paths[i].body) {%><% if (paths[i].pathParams) { %>
+export function <%= paths[i].operationId%>(<% if (paths[i].pathParams || paths[i].queryParams || paths[i].body) {%><% if (paths[i].pathParams) { %>
   params,<% } %> <% if (paths[i].queryParams) {%>
   query,<% } %><% if (paths[i].body) { %>
   body,<% } %><% } %>

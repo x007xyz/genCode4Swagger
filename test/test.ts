@@ -10,6 +10,6 @@ import { generateService } from '../src/index';
 
 // generateService('https://gw-admin-dev.yhche.com/order/v3/api-docs', { prefix: 'order', mode: 'js' });
 
-generateService("https://gw-admin-dev.yhche.com/bss/v3/api-docs", { prefix: 'bss', mode: 'js', pathReg: '^\/admin' });
+generateService("http://d.yofishseo.com:8071/api/v3/api-docs/default", { prefix: '', mode: 'js', requestStr: "import request, { alovaInstance } from '../../utils/request';" });
 
 // generateService('https://gw-api-dev.yhche.com/order/v3/api-docs', { prefix: 'order', mode: 'js' });

@@ -15,6 +15,7 @@ interface ConfigOptions {
   pathReg?: String;
   dir?: string; // 存放生成的api文件的目录
   mode: 'ts' | 'js';
+  requestStr?: string;
 }
 
 // interface DocConfig {
@@ -82,6 +83,7 @@ const getOpenAPIConfig = async (schemaPath: string) => {
  * @param {string} config.pathReg - 对路径进行正则判断，不符合的路径不生成。
  * @param {string[]} config.ignore - 忽略的路径列表。
  * @param {string} config.dir - 生成的 api 文件的目录。
+ * @param {string} config.requestStr - 请求方法代码，默认为import request from '@/utils/request';
  * @param {'ts' | 'js'} config.mode - 生成文件的模式（'ts' 或 'js'）。
  * @returns {Promise<void>} - 返回一个 Promise，当所有操作完成时 resolve。
  * @example
@@ -99,7 +101,7 @@ export const generateService = async (schemaPath: string, config: ConfigOptions)
 
   const { templateDir, outputDir } = Object.assign({
     templateDir: path.join(__dirname, `../template/${config.mode}`),
-    outputDir: path.join(process.cwd(), `./src/${config.dir || 'api'}/${config.prefix}`),
+    outputDir: path.join(process.cwd(), `./${config.dir || 'api'}/${config.prefix}`),
   }, config)
 
   const openAPI = await getOpenAPIConfig(schemaPath);
@@ -116,6 +118,7 @@ export const generateService = async (schemaPath: string, config: ConfigOptions)
 
   // 使用doc对象接口文件
   genFileFromTemplate(apiTemplate, {
+    requestStr: config.requestStr || `import request from '@/utils/request';`,
     paths: doc.groups.reduce((result, cur) => {
       return result.concat(cur.paths.map(path => {
         // 提取params
@@ -123,7 +126,7 @@ export const generateService = async (schemaPath: string, config: ConfigOptions)
           str.replace(/\{|\}/g, "")
         );
         // 将{}转化为${}
-        path.path = `/${doc.prefix}${path.path.replace(/\{/g, "${")}`;
+        path.path = (doc.prefix ? `/${doc.prefix}` : "") + `${path.path.replace(/\{/g, "${")}`;
         return path;
       }))
     }, [])
