@@ -219,10 +219,16 @@ class APIDoc {
       Object.keys(openAPI.paths[path]).forEach((method) => {
         // 通过tags找到对应的group
         const obj: OperationObject = openAPI.paths[path][method];
-        const groupIndex = groups.findIndex((g) => g.name === obj.tags[0]);
+        let groupIndex = groups.findIndex((g) => g.name === obj.tags[0]);
 
         if (groupIndex === -1) {
-          return;
+          // 不存在的group，生成新的group
+          groups.push({
+            name: obj.tags[0],
+            desc: "",
+            paths: [],
+          });
+          groupIndex = groups.length - 1;
         }
 
         const pathObj: DocPathItemObject = {
