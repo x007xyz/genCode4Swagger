@@ -18,6 +18,7 @@
 | config.pathReg | <code>string</code> | <p>对路径进行正则判断，不符合的路径不生成。</p> |
 | config.ignore | <code>Array.&lt;string&gt;</code> | <p>忽略的路径列表。</p> |
 | config.dir | <code>string</code> | <p>生成的 api 文件的目录。</p> |
+| config.requestStr | <code>string</code> | <p>请求方法代码，默认为import request from '@/utils/request';</p> |
 | config.mode | <code>&#x27;ts&#x27;</code> \| <code>&#x27;js&#x27;</code> | <p>生成文件的模式（'ts' 或 'js'）。</p> |
 
 **Example**  
